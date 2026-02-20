@@ -1,7 +1,6 @@
-const createUser = async(req,res,next)=>{
-// try {
-//     const 
-// } catch (error) {
-    
-// }
-}
+const createUser = async (req, res, next) => {
+  // try {
+  //     const
+  // } catch (error) {
+  // }
+};
