@@ -3,12 +3,14 @@ import { config } from "dotenv";
 import connectDb from "./config/db.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import errorHandler from "./middlewares/errorHandler.js";
 config();
 const app = express();
 const port = process.env.PORT;
 
 app.use(express.json());
 app.use(cookieParser());
+
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
@@ -16,6 +18,8 @@ app.use(
   }),
 );
 
+
+app.use(errorHandler);
 connectDb().then(() => {
   app.listen(port, () => {
     console.log(`app running port ${port}`);
