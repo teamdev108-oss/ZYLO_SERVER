@@ -8,6 +8,7 @@ import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
 import xssClean from "xss-clean";
 import rateLimit from "express-rate-limit";
+import authRoutes from "./routes/authRoute/route.js";
 
 config();
 const app = express();
@@ -35,7 +36,7 @@ app.use(
     credentials: true,
   }),
 );
-
+app.use("/api/auth", authRoutes);
 app.use(errorHandler);
 connectDb().then(() => {
   app.listen(port, () => {

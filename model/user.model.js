@@ -73,6 +73,22 @@ const userSchema = mongoose.Schema(
     passwordChangedAt: {
       type: Date,
     },
+    processing: {
+      type: Boolean,
+      default: false,
+    },
+    dob: {
+      type: Date,
+    },
+    verifyCode: String,
+    verifyCodeExpires: Date,
+    resetPasswordToken: String,
+    resetPasswordExpiresAt: Date,
+    signUpWithGoogle: {
+      type: Boolean,
+      default: false,
+    },
+    refreshToken: { type: String },
   },
   {
     timestamps: true,
