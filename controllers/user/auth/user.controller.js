@@ -11,6 +11,7 @@ export const createUser = async (req, res, next) => {
     let error;
     if (err) {
       error = err.errors[0].message;
+      sendResponse(400, error)
       return;
     }
 
