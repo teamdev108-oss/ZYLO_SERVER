@@ -19,7 +19,7 @@ export const createUser = async (req, res, next) => {
 
     const existingUser = User.findOne({ email });
     if (existingUser) {
-      sendResponse(400, "user already exists");
+     return sendResponse(400, "user already exists");
     }
 
     const hashpass = await bcrypt.hash(password, 10);
@@ -31,10 +31,9 @@ export const createUser = async (req, res, next) => {
       email,
       password: hashpass,
       verifyCode,
-      verifyCodeExpires: Date.now(),
+      verifyCodeExpires: Date.now() + 10 * 60 * 1000,
     });
 
-    genCookie(res, user._id);
     const token = genCookie(res, user._id);
     user.refreshToken = token;
     await user.save();
