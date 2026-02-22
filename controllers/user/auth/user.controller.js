@@ -45,6 +45,6 @@ export const createUser = async (req, res, next) => {
       },
     });
   } catch (error) {
-    next();
+    next(error);
   }
 };
