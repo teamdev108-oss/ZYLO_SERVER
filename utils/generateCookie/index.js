@@ -1,5 +1,5 @@
-import { jwt } from "jsonwebtoken";
-import sendResponse from "../sendResponse";
+import jwt from "jsonwebtoken";
+import sendResponse from "../sendResponse/index.js";
 
 const genCookie = (res, userId) => {
   if (!userId) {

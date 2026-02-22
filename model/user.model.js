@@ -3,34 +3,34 @@ import mongoose from "mongoose";
 const userSchema = mongoose.Schema(
   {
     name: {
-      type: string,
+      type: String,
       required: true,
       minlength: 3,
       maxlength: 50,
       trim: true,
     },
     email: {
-      type: string,
+      type: String,
       required: true,
       unique: true,
       trim: true,
       lowercase: true,
     },
     password: {
-      type: string,
+      type: String,
       required: true,
     },
     bio: {
-      type: string,
+      type: String,
       maxlength: 160,
       default: "",
     },
     avatar: {
-      type: string,
+      type: String,
       default: "",
     },
     coverImage: {
-      type: string,
+      type: String,
       default: "",
     },
     followers: [
