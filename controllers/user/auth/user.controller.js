@@ -6,16 +6,13 @@ import bcrypt from "bcryptjs";
 
 export const createUser = async (req, res, next) => {
   try {
-    const { data, err } = registerUserValidator.safeParse(req.body);
+    const result = registerUserValidator.safeParse(req.body);
 
-    let error;
-    if (err) {
-      error = err.errors[0].message;
-     return sendResponse(res, 400, error)
-      
+    if (!result.success) {
+     return sendResponse(res, 400, result.error.issues[0].message)    
     }
 
-    const { name, email, password } = data;
+    const { name, email, password } = result.data;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
