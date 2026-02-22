@@ -1,5 +1,8 @@
 import jwt from "jsonwebtoken";
 import sendResponse from "../sendResponse/index.js";
+import { config } from "dotenv";
+
+config();
 
 const genCookie = (res, userId) => {
   if (!userId) {
