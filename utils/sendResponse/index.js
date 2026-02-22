@@ -1,10 +1,8 @@
-import { response } from "express";
-
-const sendResponse = (status, message, data) => {
-  return response.status(status).json({
+const sendResponse = (res, status, message, data = null) => {
+  return res.status(status).json({
+    success: status < 400,
     message,
-    error: status === 400 ? "true" : "false",
-    data: data || [],
+    data,
   });
 };
 

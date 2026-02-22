@@ -11,15 +11,15 @@ export const createUser = async (req, res, next) => {
     let error;
     if (err) {
       error = err.errors[0].message;
-      sendResponse(400, error)
-      return;
+     return sendResponse(res, 400, error)
+      
     }
 
     const { name, email, password } = data;
 
     const existingUser = User.findOne({ email });
     if (existingUser) {
-     return sendResponse(400, "user already exists");
+     return sendResponse(res,400, "user already exists");
     }
 
     const hashpass = await bcrypt.hash(password, 10);
@@ -38,7 +38,7 @@ export const createUser = async (req, res, next) => {
     user.refreshToken = token;
     await user.save();
 
-    sendResponse(200, "User Created Successfully", {
+    return sendResponse(res,200, "User Created Successfully", {
       user: {
         ...user._doc,
         password: undefined,
