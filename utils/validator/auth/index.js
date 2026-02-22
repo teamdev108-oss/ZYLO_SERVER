@@ -22,4 +22,16 @@ const registerUserValidator = z.object({
   }),
 });
 
-export default registerUserValidator;
+const loginUserValidator = z.object({
+  email: z
+    .email({
+      message: "email must be valid",
+    })
+    .trim(),
+
+  password: z.string().min(6, {
+    message: "password must be minimum 6 characters",
+  }),
+});
+
+export { registerUserValidator, loginUserValidator };
