@@ -114,9 +114,9 @@ export const verifyEmail = async (req, res, next) => {
 
 export const logoutUser = async (req, res, next) => {
   try {
-    const { userId } = req.userId;
+    const userId = req.userId;
 
-    const user = await User.findOne({ userId });
+    const user = await User.findById({ userId });
 
     if (!user) {
       return sendResponse(res, 400, "User Not Found");
