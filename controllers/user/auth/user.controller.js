@@ -116,7 +116,7 @@ export const logoutUser = async (req, res, next) => {
   try {
     const userId = req.userId;
 
-    const user = await User.findById({ userId });
+    const user = await User.findById(userId);
 
     if (!user) {
       return sendResponse(res, 400, "User Not Found");

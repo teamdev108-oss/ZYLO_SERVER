@@ -6,7 +6,7 @@ config();
 
 const genCookie = (res, userId) => {
   if (!userId) {
-    return sendResponse(400, "provide userId");
+    return sendResponse(res, 400, "provide userId");
   }
   const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: "30d",
